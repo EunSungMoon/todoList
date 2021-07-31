@@ -1,4 +1,3 @@
-
 /**
 1.	To do list 돔 그리기
 2.	기능 추가
@@ -12,10 +11,50 @@
 
 -	Done 리스트에서 삭제 버튼 **/
 
-console.log('task');
-
-// taskList -> 리스트가 추가될 장소
-//inputTask ->리스트 추가할 input 박스
-
 const el = selector => document.querySelector(selector);
 const elAll = selector => document.querySelectorAll(selector);
+
+const createBtn = () => {
+  const li = document.createElement("li");
+  const delBtn = document.createElement('button');
+  const inputBox = document.createElement('input')
+  const addBtn = document.createElement('button')
+
+  el('.listForm').appendChild(inputBox)
+  el('.listForm').appendChild(addBtn)
+  inputBox.className = 'inputTask'
+  // inputBox.placeholder='Write to do'
+  addBtn.className = 'addBtn'
+  addBtn.innerText = '입력'
+
+  el('ul').appendChild(li);
+  li.append(delBtn);
+  delBtn.innerText = '전체삭제'
+  delBtn.className = 'delAllBtn'
+}
+createBtn()
+
+const createBtnDone = () => {
+  const li2 = document.createElement('li');
+  const delBtn = document.createElement('button');
+  el('.taskDone ul').appendChild(li2)
+  li2.append(delBtn);
+  delBtn.innerText = '전체삭제'
+  delBtn.className = 'delAllBtn2'
+}
+createBtnDone()
+
+
+const printList = () => {
+  el('.addBtn').addEventListener('click', () => {
+    console.log("되니?");
+  })
+}
+printList()
+
+const removeList = () => {
+  elAll('.delAllBtn .delAllBtn2').addEventListener('click', () => {
+    console.log("지워지니?");
+  })
+}
+removeList()

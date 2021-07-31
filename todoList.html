@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,30 +8,30 @@
   <title>todoList</title>
   <link rel="stylesheet" href="todoList.css">
 </head>
+
 <body>
   <h1>To Do List</h1>
   <div class="taskAdd">
-    <h2>I have to do...</h2>
+    <div class="title">
+      <h2>I have to do...</h2>
+    </div>
+    <form class="listForm" onsubmit="return false"></form>
+  </div>
+
+  <div class="taskList">
     <ul>
-      <li>
-        <input type="text" class="inputTask">
-        <button class="addBtn">입력</button>
-      </li>
-      <li>
-        <button class="delAllBtn">전체 삭제</button>
-      </li>
+      <!-- list 들어갈 곳 -->
     </ul>
   </div>
-  <div class="taskList"></div>
 
   <div class="taskDone">
     <h2>Done!!</h2>
     <ul>
-      <li>
-        <button class="delAllBtn">전체삭제</button>
-      </li>
+      <!-- 완료된 list 들어갈 곳 -->
     </ul>
   </div>
+
 </body>
 <script src="todoList.js"></script>
+
 </html>

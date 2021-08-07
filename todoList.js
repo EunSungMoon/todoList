@@ -1,11 +1,11 @@
 /**
-1.	To do list 돔 그리기
+1.	To do list 돔 그리기 -ok
 2.	기능 추가
--	Input에 내용 작성 후 추가 버튼을 클릭하면 list 추가 
+-	Input에 내용 작성 후 추가 버튼을 클릭하면 list 추가  ok
 -	Input 안에 x버튼 만들어서 클릭할 때 마다 input 내용 삭제
 -	전체 삭제 클릭 후 리스트 전체 내용 삭제
 
--	List 각각 삭제 버튼 만들어서 삭제 이벤트s
+-	List 각각 삭제 버튼 만들어서 삭제 이벤트
 -	리스트 내용 수정 버튼 만들어서 수정 가능하도록?
 -	리스트 완료 시 체크 클릭 후 done으로 이동
 
@@ -20,7 +20,7 @@ const createDom = () => {
   el('.listForm').appendChild(inputBox)
   el('.listForm').appendChild(addBtn)
   inputBox.className = 'inputTask'
-  inputBox.placeholder='Write to do'
+  inputBox.placeholder = 'Write to do'
   addBtn.className = 'addBtn'
   addBtn.innerText = '입력'
 }
@@ -28,22 +28,24 @@ createDom()
 
 
 const createBtn = (dom) => {
-  const li = document.createElement('li');
   const delBtn = document.createElement('button');
-  el(dom).appendChild(li);
-  li.append(delBtn);
+  el(dom).append(delBtn);
   delBtn.innerText = '전체삭제'
   delBtn.className = 'delAllBtn'
 }
-createBtn('.taskList ul')
-createBtn('.taskDone ul')
+createBtn('.taskList')
+createBtn('.taskDone')
 
-const printList = () => {
-const li=document.createElement('li')
-  el('.addBtn').addEventListener('click', e => {
-    e.preventDefault();
-    el('li').appendChild(li)
-    li.innerText=el('.inputTask').value
+const printList = e => {
+  addEvt()
+}
+
+const addEvt = e => {
+  const li = document.createElement('li')
+  el('.addBtn').addEventListener('click', () => {
+    el('.taskList ul').innerHTML +=
+      `<li>${el('.inputTask').value}</li>`
+      $('.inputBox').remove()
   })
 }
 printList()

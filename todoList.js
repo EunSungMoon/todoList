@@ -3,7 +3,7 @@
 2.	기능 추가
 -	Input에 내용 작성 후 추가 버튼을 클릭하면 list 추가  ok
 -	Input 안에 x버튼 만들어서 클릭할 때 마다 input 내용 삭제
--	전체 삭제 클릭 후 리스트 전체 내용 삭제
+-	전체 삭제 클릭 후 리스트 전체 내용 삭제 ok
 
 -	List 각각 삭제 버튼 만들어서 삭제 이벤트
 -	리스트 내용 수정 버튼 만들어서 수정 가능하도록?
@@ -36,24 +36,41 @@ const createBtn = (dom) => {
 createBtn('.taskList')
 createBtn('.taskDone')
 
-const printList = e => {
-  addEvt()
-}
-
 const addEvt = e => {
-  const li = document.createElement('li')
   el('.addBtn').addEventListener('click', () => {
+    //아무것도 입력되지 않았을때 분기처리 필요
     el('.taskList ul').innerHTML +=
-      `<li>${el('.inputTask').value}</li>`
-      $('.inputBox').remove()
+      `<li>${el('.inputTask').value} <button class="delBtn">삭제</button></li>`
+    el('.inputTask').value = ''
   })
 }
-printList()
+
+const removeTaskList = () => {
+  el('.taskList .delAllBtn').addEventListener('click', () => {
+    elAll('.taskList li').forEach(e => {
+      e.remove();
+    })
+  })
+}
+removeTaskList()
+
+const removeDoneList = () => {
+  el('.taskDone .delAllBtn').addEventListener('click', () => {
+    elAll('.taskDone li').forEach(e => {
+      e.remove();
+    })
+  })
+}
+removeDoneList()
 
 const removeList = () => {
-  elAll('.delAllBtn').forEach(dom => dom.addEventListener('click', e => {
-    console.log("둘다 지워지니");
+  elAll('.delBtn').forEach(e=>e.addEventListener('click', e=>{
+    console.log("지워지니");
   }))
 }
-removeList()
 
+const printList = () => {
+  addEvt()
+  // removeList()
+}
+printList()

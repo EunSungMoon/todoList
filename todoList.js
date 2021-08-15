@@ -75,10 +75,3 @@ removeTaskList('.taskDone .delAllBtn', '.taskDone li') //완료된 리스트 삭
 // removeTaskList('.delBtn', '.list')
 
 
-//리스트 개별삭제
-// const removeList = e => {
-
-// }
-// removeList()
-
-

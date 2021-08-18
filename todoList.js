@@ -55,13 +55,6 @@ const addEvt = e => {
   })
 }
 
-//화면 그리는 함수 실행
-const printList = () => {
-  addEvt()
-}
-printList()
-
-
 // 전체 삭제
 const removeTaskList = (target1, target2) => { //
   el(target1).addEventListener('click', () => {
@@ -70,8 +63,24 @@ const removeTaskList = (target1, target2) => { //
     })
   })
 }
-removeTaskList('.taskList .delAllBtn', '.taskList li') //리스트 삭제
-removeTaskList('.taskDone .delAllBtn', '.taskDone li') //완료된 리스트 삭제
-// removeTaskList('.delBtn', '.list')
+removeTaskList('.taskList .delAllBtn', '.taskList li') //리스트 전체 삭제
+removeTaskList('.taskDone .delAllBtn', '.taskDone li') //완료된 리스트 전체 삭제
+
+//리스트 삭제
+// const removeList = target => {
+//   el('.delBtn').addEventListener('click', e => {
+//     console.log('삭제');
+//   })
+// }
+// removeList()
+
+//화면 그리는 함수 실행
+const printList = () => {
+  addEvt()
+}
+printList()
+
+
+
 
 

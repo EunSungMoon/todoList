@@ -14,12 +14,13 @@
 
 const el = selector => document.querySelector(selector);
 const elAll = selector => document.querySelectorAll(selector);
+const makeDom = dom => document.createElement(dom)
 
 
 //기본 첫 화면 그리기(버튼 생성 input박스 생성)
 const createDom = () => {
-  const inputBox = document.createElement('input')
-  const addBtn = document.createElement('button')
+  let inputBox = makeDom('input')
+  let addBtn = makeDom('button')
   el('.listForm').appendChild(inputBox)
   el('.listForm').appendChild(addBtn)
   inputBox.className = 'inputTask'
@@ -31,27 +32,24 @@ createDom()
 
 //전체 삭제 버튼 만들기
 const createBtn = (dom) => {
-  const delBtn = document.createElement('button');
-  el(dom).append(delBtn);
-  delBtn.innerText = '전체삭제'
-  delBtn.className = 'delAllBtn'
+  let delAllBtn = makeDom('button');
+  el(dom).append(delAllBtn);
+  delAllBtn.innerText = '전체삭제'
+  delAllBtn.className = 'delAllBtn'
 }
 createBtn('.taskList') //todolist에 전체삭제
 createBtn('.taskDone') //완료된 리스트 전체삭제
 
 //리스트 추가 
-const addEvt = e => {
+const addEvt = () => {
   el('.addBtn').addEventListener('click', () => {
-    //아무것도 입력되지 않았을때 분기처리 필요
     if (el('.inputTask').value.length == 0) {
       alert('Please enter a task')
     } else {
       el('.taskList ul').innerHTML +=
-        `<li class="list" value="list">
-      ${el('.inputTask').value} <button class="completeBtn">완료</button> <button class="delBtn">삭제</button>
-      </li>`
-      el('.inputTask').value = ''
+        `<li class="list">${el('.inputTask').value}<button class="completeBtn">완료</button> <button class="delBtn">삭제</button></li>`
     }
+    el('.inputTask').value = ''
   })
 }
 
@@ -66,21 +64,24 @@ const removeTaskList = (target1, target2) => { //
 removeTaskList('.taskList .delAllBtn', '.taskList li') //리스트 전체 삭제
 removeTaskList('.taskDone .delAllBtn', '.taskDone li') //완료된 리스트 전체 삭제
 
-//리스트 삭제
-// const removeList = target => {
-//   el('.delBtn').addEventListener('click', e => {
-//     console.log('삭제');
-//   })
-// }
-// removeList()
+//리스트 삭제, 완료
+const removeList = () => {
+  el('ul').addEventListener('click', e => {
+    if (e.target.className == 'delBtn') {
+      e.target.parentNode.remove()
+    }
+    else if (e.target.className == 'completeBtn') {
+      el('.taskDone ul').insertBefore(e.target.parentNode, null)
+      e.target.remove();
+      el('.list').classList.add('doneList')
+    }
+  })
+}
+removeList()
+
 
 //화면 그리는 함수 실행
 const printList = () => {
   addEvt()
 }
 printList()
-
-
-
-
-
